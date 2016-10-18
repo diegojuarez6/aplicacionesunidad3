@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+     <h:head>
+         <title>#{str.partidoListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+           <ui:define name="contenido">
+                <h1>#{str.partidoListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{partidoBean.iniciar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{partidoBean.partidos}" var="p">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <p:commandButton value="#{str.buttonEdit}"
+                                             action="#{partidoBean.editar(p)}"></p:commandButton>
+                        </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.partidoNameHeader}">
+                        <p:outputLabel value="#{p.nombrePartido}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.partidoPathPromt}">
+                        <p:outputLabel value="#{p.descripcion}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.partidoTypePrompt}">
+                        <p:outputLabel value="#{p.color}"></p:outputLabel>
+                    </p:column>  
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

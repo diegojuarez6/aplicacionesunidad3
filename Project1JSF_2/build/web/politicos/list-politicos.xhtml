@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>#{str.politicoListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.politicoListTitle}</h1>
+                 <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{politicoBean.iniciar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{politicoBean.politicos}" var="p">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <p:commandButton value="#{str.buttonEdit}"
+                                             action="#{politicoBean.editar(p)}"></p:commandButton>
+                        </h:form>
+                        </p:column>
+                    <p:column headerText="#{str.politicoNameHeader}">
+                        <p:outputLabel value="#{p.nombrePolitico}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.politicoPathPromt}">
+                        <p:outputLabel value="#{p.apellido}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.politicoTypePrompt}">
+                        <p:outputLabel value="#{p.correo}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.partidoNamePrompt}">
+                        <p:outputLabel value="#{p.partido.nombrePartido}"></p:outputLabel>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>                 
+</html>
